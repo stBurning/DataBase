@@ -16,19 +16,10 @@ class DBHelper(
         connection = DriverManager.getConnection(
             "jdbc:mysql://$address:$port/$dbName?serverTimezone=UTC", user, password
         )
-        dropAllTables()
-        createDataBaseFromDump("src/main/kotlin/students.sql")
-        fillTableFromCSV("cathedras", "data/cathedras.csv")
-        fillTableFromCSV("disciplines", "data/disciplines.csv")
-        fillTableFromCSV("specializations", "data/specializations.csv")
-        fillTableFromCSV("academic_plans", "data/academic_plans.csv")
-        fillTableFromCSV("groups", "data/groups.csv")
-        fillTableFromCSV("disciplines_plans", "data/disciplines_plans.csv")
-        fillTableFromCSV("students", "data/students.csv")
-        fillTableFromCSV("performance", "data/performance.csv")
+
     }
 
-    private fun dropAllTables(){
+    fun dropAllTables(){
         println("Удаление всех таблиц в базе данных...")
         val s = connection?.createStatement()
         s?.execute("DROP TABLE if exists `performance`")
@@ -45,7 +36,7 @@ class DBHelper(
 
     /**Функция, создающая таблицы в базе данных на основе SQL-дампа
      * @param path путь до SQL-дампа*/
-    private fun createDataBaseFromDump(path: String){
+    fun createDataBaseFromDump(path: String){
         println("Создание структуры базы данных из дампа...")
         try {
             val s = connection?.createStatement()
@@ -69,7 +60,7 @@ class DBHelper(
      * @param table название таблицы в базе данных
      * @param path путь до источника данных (CSV - файла)
      * TODO Добавить Exception для ощибок с чтением файла*/
-    private fun fillTableFromCSV(table: String, path: String){
+    fun fillTableFromCSV(table: String, path: String){
 
         println("Заполнение таблицы $table из файла $path")
         val s = connection?.createStatement()

@@ -15,7 +15,9 @@ fun main() {
 //        fillTableFromCSV("disciplines_plans", "data/disciplines_plans.csv")
 //        fillTableFromCSV("students", "data/students.csv")
 //        fillTableFromCSV("performance", "data/performance.csv")
-        printScholarship()
+        getStudentResults("Виталий", "Горбушин", "Валерьевич", "2001-06-12")
+        println()
+        getStudentResults("Дмитрий","Маслюков","Владимирович","1999-7-4")
     }
 
 }
